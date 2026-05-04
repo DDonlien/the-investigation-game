@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "notes": "Links normalized ids from the boardgame CSV tables to executable hooks. status=pending means the real table row is loaded and displayed, but the detailed rule effect is not automated yet.",
+  "investigators": {
+    "*": {
+      "awakeSkillHook": "pending.investigator.awake",
+      "madnessSkillHook": "pending.investigator.madness",
+      "status": "pending"
+    }
+  },
+  "strategyCards": {
+    "bu-ju-i": {
+      "effectHook": "strategy.layout.removeMechanism",
+      "status": "stub"
+    },
+    "fan-zhuan-i": {
+      "effectHook": "strategy.turnOrder.reverse",
+      "status": "stub"
+    },
+    "fan-zhuan-ii": {
+      "effectHook": "strategy.turnOrder.reverseAndSkip",
+      "status": "stub"
+    },
+    "*": {
+      "effectHook": "pending.strategy.effect",
+      "status": "pending"
+    }
+  },
+  "environmentCards": {
+    "man-heng-wu-li": {
+      "effectHook": "environment.intelligence.multiPayCoerce",
+      "status": "stub"
+    },
+    "yu-jia-zhi-zui": {
+      "effectHook": "environment.truth.placeAtBottom",
+      "status": "stub"
+    },
+    "*": {
+      "effectHook": "pending.environment.effect",
+      "status": "pending"
+    }
+  },
+  "supportCards": {
+    "*": {
+      "effectHook": "pending.support.effect",
+      "status": "pending"
+    }
+  }
+}
