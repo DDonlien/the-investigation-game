@@ -1,4 +1,4 @@
-# Agent 协作规范
+# Agent 协作规范模板
 
 本文件分为“标准内容”和“项目专用内容”。除非用户明确要求修改协作规范，否则只允许在“项目专用内容”下补充或调整，不修改标准内容。
 
@@ -6,14 +6,14 @@
 
 ### 0. 文档缺失时先创建
 
-- 如果当前仓库或当前子功能根目录没有 `AGENTS.md`，先阅读 `agent-template/AGENTS.md`，并在根目录创建属于该目录自己的 `AGENTS.md`。
-- 如果没有 `REQUIREMENTS.md`，先阅读 `agent-template/REQUIREMENTS.md`，并在根目录创建属于该目录自己的 `REQUIREMENTS.md`。
-- 如果没有 `DESIGN.md`，先阅读 `agent-template/DESIGN.md`，并在根目录创建属于该目录自己的 `DESIGN.md`。
-- 如果没有 `README.md`，先阅读 `agent-template/README.md`，并在根目录创建属于该目录自己的 `README.md`。
-- 如果仓库内已有内容，或已经与当前 agent 进行过对话，基于仓库内的内容和对话的实际情况填写上述文件。
+- 如果当前仓库或当前子功能根目录没有 `AGENTS.md`，先阅读 `agent-template/AGENTS.md` ，并在根目录创建属于该目录自己的 `AGENTS.md` 。
+- 如果没有 `REQUIREMENTS.md` ，先阅读 `agent-template/REQUIREMENTS.md` ，并在根目录属于该目录自己的`REQUIREMENTS.md` 。
+- 如果没有 `DESIGN.md` ，先阅读 `agent-template/DESIGN.md` ，并在根目录属于该目录自己的 `DESIGN.md` 。
+- 如果没有 `README.md`，先阅读 `agent-template/README.md` ，并在根目录属于该目录自己的 `README.md` 。
+- 如果仓库内已有内容，或已经与当前agent进行过对话，基于仓库内的内容和对话的实际情况，填写上述文件，填写规则会在下文中写明。
 - `AGENTS.md`、`REQUIREMENTS.md`、`DESIGN.md` 和 `README.md` 默认使用中文书写；除非用户特别说明，或术语、代码符号、专有名词本身应使用英文。
 - `agent-template/` 中的 `README.md`、`REQUIREMENTS.md`、`DESIGN.md` 和 `agent-log/` 日志模板只保留演示内容；具体撰写规则统一以本 `AGENTS.md` 为准，阅读时需要注意分辨规则和示例的差异。
-- 上述创建的文件的文件名必须全大写，其中 AGENTS 和 REQUIREMENTS 需要复数，即使用户临时写成小写或单数，也应该注意到该统一标准，除非用户明确要求修改。
+- 上述创建的文件的文件名必须全大写，其中AGENTS和REQUIREMENTS需要复数，即使用户临时写成小写或单数，也应该注意到该统一标准（除非用户数明确要求修改）。
 
 ### 1. 每次任务开始前
 
@@ -22,9 +22,9 @@
 - 如果 `git pull` 失败、发生冲突，或提示需要人工处理，停止执行并告知用户。
 - 阅读用户本次原始 prompt。
 - 阅读当前目录适用的 `AGENTS.md`、`README.md`、`REQUIREMENTS.md`、`DESIGN.md` 和 `agent-log/` 中的日志。日志的阅读规则如下：
-  - 找到由当前 agent/对话创建的最新日志。
+  - 找到由当前agent/对话创建的最新日志。
   - 如果有任何日志比该日志更新，阅读所有更新。
-  - 如果没有，则不阅读任何日志。
+  - 如果没有，则不阅读任何日志
 - 检查 `REQUIREMENTS.md`，确认用户本次需求是否匹配已有需求、子需求、验收项或已标记的阻塞项。
 - 如果仓库内有父级与子级 `AGENTS.md`，从父到子依次阅读；更具体目录的规则优先，但不得违反父级标准内容和用户明确要求。
 
@@ -32,7 +32,7 @@
 
 - 为每次任务执行创建一条新的执行日志，放在当前适用目录的 `agent-log/`。
 - 日志命名规则：`YYYYMMDDHHMMSS-utcpN-model.md` 或 `YYYYMMDDHHMMSS-utcnN-model.md`。
-- `utcpN` 表示 UTC 正偏移，`utcnN` 表示 UTC 负偏移；不要在文件名中使用 `+` 或 `-`，以确保不同系统和工具链的适配性，N 由实际数字代替。
+- `utcpN` 表示 UTC 正偏移，`utcnN` 表示 UTC 负偏移；不要在文件名中使用 `+` 或 `-`，以确保不同系统和工具链的适配性，N由实际数字代替。
 - 示例：`20260530174209-utcp8-gpt5.md`、`20260530094209-utcn8-gpt5.md`。
 - 使用任务完成时间作为日志文件名中的时间；如果任务开始时先创建临时日志，交付前按完成时间重命名。
 - 一次任务执行从 Agent 开始处理用户请求算起，到交付、提交、阻塞或明确暂停为止。
@@ -67,7 +67,7 @@
   - `- [ ]` 表示未完成。
   - `- [x]` 表示已完成。
   - 阻塞、延后、取消在任务后追加 `#blocked`、`#deferred` 或 `#cut`。
-  - 如果条目本身不适合涵盖已完成、未完成的信息，但确实需要被记录，则 checkbox 视作是否已读。
+  - 如果条目本身不适合涵盖已完成、未完成的信息，但确实需要被记录，则checkbox视作是否已读。
   - 如果条目本身既不适合记录是否已读、也不适合记录完成状态，但确实需要记录，则酌情使用有序、无序列表。
 - 稳定 ID 不因排序、插入或移动而改变。
 - 拆分任务时保留原 ID，并新增子 ID。
@@ -88,12 +88,12 @@
 
 - `DESIGN.md` 不是系统整体设计文档；它是视觉规范和界面风格文档。
 - `DESIGN.md` 参考 Google Stitch / DESIGN.md 的语义：用 Markdown 描述 AI 和开发者可执行的视觉设计系统，包括颜色、字体、间距、布局、组件样式、视觉语气、响应式规则和可访问性约束。
-- 如果该文件在首次创建时仓库中已有内容、或者已有 agent 对话记录，则应该根据已有内容总结并创建符合实际情况的文件。
+- 如果该文件在首次创建时仓库中已有内容、或者已有agent对话记录，则应该根据已有内容总结并创建符合实际情况的文件。
 - `DESIGN.md` 用于让 AI 在实现 UI 时不猜测视觉风格；它不记录系统架构、数据模型、产品路线图或任务列表。
 - 当品牌视觉、UI 风格、设计 token、组件外观、布局原则或可访问性规则变化时，同步更新 `DESIGN.md`。
 - 如果项目没有 UI 或视觉界面，`DESIGN.md` 可只记录“不适用”和原因。
 - 如果仓库中已有旧名 `DESIGNS.md` 且内容其实是系统/架构说明，后续整理时应迁移：系统/仓库/应用说明进入 `README.md`，视觉规范进入 `DESIGN.md`，具体需求进入 `REQUIREMENTS.md`。
-- 如果项目的设计风格发生了大幅度、颠覆性的改变，应该将老版本的内容创建为 `DESIGN-yyyymmddhhmmss.md` 文件，保存到根目录 `archive/design/`；如果该地址不存在，创建。
+- 如果项目的设计风格发生了大幅度、颠覆性的改变，应该将老版本的内容创建为一个DESIGN-yyyymmddhhmmss.md的文件，保存到根目录/archive/design/的地址，如果改地址不存在，创建。
 
 ### 6. 父子文档关系
 
@@ -122,20 +122,22 @@
 
 ## 项目专用内容
 
+复制模板后，在本节下补充项目自己的信息。除非有特殊说明，不修改上方“标准内容”。
+
 ### 项目概况
 
-- 项目名称：《调查》系列资料库与电子游戏原型仓库。
-- 产品简介：维护《调查深入》《现实解构》等项目的规则、卡牌数据、GDD 和当前 Delve 电子游戏 TypeScript 原型。
-- 主要用户：游戏设计者、后续 agent/开发者、规则和玩法验证者。
-- 当前阶段：资料库已整理为 `md`/`csv`；当前主线是《调查深入》电子游戏一阶段 TypeScript MVP。
+- 项目名称：
+- 产品简介：
+- 主要用户：
+- 当前阶段：
 
 ### 技术栈与命令
 
-- 技术栈：Markdown/CSV 资料库；Delve videogame 使用 Vite + TypeScript + GSAP + 原生 DOM。
-- 开发命令：`cd investigation-delve/videogame/ts && npm run dev`
-- 测试命令：暂无专用测试；行为/UI 变更至少运行构建并进行必要浏览器烟测。
-- 构建命令：`cd investigation-delve/videogame/ts && npm run build`
-- 发布命令：暂无。
+- 技术栈：
+- 开发命令：
+- 测试命令：
+- 构建命令：
+- 发布命令：
 
 ### 文档入口
 
@@ -143,31 +145,25 @@
 - 需求追踪：`REQUIREMENTS.md`
 - 视觉规范：`DESIGN.md`
 - 执行日志：`agent-log/`
-- 当前主线子项目：`investigation-delve/videogame/README.md`
 
 ### 目录索引
 
-- 根目录：全局项目说明、协作规范和跨项目需求。
+- 根目录：
 - 子功能目录：
-  - `investigation-delve/videogame/`：当前主线，《调查深入》电子游戏。
-  - `investigation-delve/boardgame/`：《调查深入》桌游规则与 CSV 数据源。
-  - `investigation-reality-unraveled/boardgame/`：《现实解构》桌游资料。
 - 资源目录：
-  - `investigation-delve/boardgame/game-design/`
-  - `investigation-reality-unraveled/boardgame/game-design/`
-- 文档目录：各项目的 `README.md`、`REQUIREMENTS.md`、`DESIGN.md`、`agent-log/`。
-- 测试目录：当前尚未建立专用测试目录。
+- 文档目录：
+- 测试目录：
 
 ### 子功能文档入口
 
-- `investigation-delve/videogame/`：当前主线子项目；文档入口为 `investigation-delve/videogame/AGENTS.md`。
+如果存在子功能，在这里索引：
 
-`investigation-delve/boardgame/` 与 `investigation-reality-unraveled/boardgame/` 当前主要是规则和资料来源，暂不单独创建子功能规范；后续若开始独立实现或频繁编辑，再补齐同一套文档。
+- `path/to/subfeature/`：说明该子功能职责；文档入口为 `path/to/subfeature/AGENTS.md`。
 
 ### 项目特殊约束
 
-- 语言与命名：项目说明文档默认中文；代码符号、命令、路径保留英文或原文。
-- 设计原则：新增笔记保持 Obsidian 友好，优先使用 `[[wikilink]]`。
-- 架构限制：Delve videogame 的规则行为应可追溯到 GDD、规则书、附录、FAQ 或 CSV。
-- 授权与引用边界：不要重新引入 `docx / xlsx / pdf` 作为主工作对象；`agent-template/` 是模板来源，不是项目交付内容。
-- 安全、隐私或合规要求：当前无账号、隐私数据或线上服务接入。
+- 语言与命名：
+- 设计原则：
+- 架构限制：
+- 授权与引用边界：
+- 安全、隐私或合规要求：
